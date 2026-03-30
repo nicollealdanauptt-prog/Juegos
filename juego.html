@@ -17,11 +17,12 @@
             justify-content: center; 
             min-height: 100vh; 
             margin: 0; 
-            padding: 20px; 
+            padding: 15px; 
             overflow: hidden;
+            box-sizing: border-box;
         }
 
-        /* Efecto de líneas de TV vieja (Misterio) */
+        /* Efecto TV vieja */
         body::before {
             content: " ";
             position: fixed;
@@ -34,70 +35,75 @@
 
         .contenedor { 
             width: 100%; 
-            max-width: 500px; 
+            max-width: 400px; 
             background: rgba(10, 10, 10, 0.9); 
-            padding: 40px; 
-            border-radius: 5px; 
+            padding: 30px 20px; 
             border: 1px solid #333; 
             text-align: center; 
-            box-shadow: 0 0 30px rgba(0,0,0,1); 
             position: relative; 
             z-index: 1;
         }
         
-        h1 { font-family: 'Syncopate', sans-serif; font-size: 1rem; letter-spacing: 5px; color: var(--cian-neon); text-shadow: 0 0 10px var(--cian-neon); margin-bottom: 30px; }
+        h1 { font-family: 'Syncopate', sans-serif; font-size: 0.9rem; letter-spacing: 3px; color: var(--cian-neon); margin-bottom: 25px; }
         
         .paso { display: none; }
-        .activo { display: block; animation: glitchear 0.3s ease; }
+        .activo { display: block; animation: aparecer 0.4s ease; }
         
-        @keyframes glitchear {
-            0% { transform: translate(2px, 2px); }
-            50% { transform: translate(-2px, -2px); }
-            100% { transform: translate(0); }
-        }
+        @keyframes aparecer { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
         
         input { 
-            width: 100%; padding: 15px; background: #000; border: 1px solid #444; border-radius: 0; color: var(--verde); 
-            font-family: 'Courier New', monospace; font-size: 1.1rem; text-align: center; margin-bottom: 15px; box-sizing: border-box; outline: none; 
+            width: 100%; padding: 12px; background: #000; border: 1px solid #444; color: var(--verde); 
+            font-family: 'Courier New', monospace; font-size: 1rem; text-align: center; margin-bottom: 15px; box-sizing: border-box; outline: none; 
         }
-        input:focus { border-color: var(--rosa-neon); box-shadow: 0 0 15px var(--rosa-neon); }
 
-        .instruccion { font-size: 0.75rem; color: #666; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        .pregunta-personal { color: var(--rosa-neon); font-weight: bold; margin-bottom: 15px; font-size: 0.9rem; text-align: left; border-left: 3px solid var(--rosa-neon); padding-left: 10px; }
+        .instruccion { font-size: 0.7rem; color: #666; margin-bottom: 15px; text-transform: uppercase; }
+        .pregunta-personal { color: var(--rosa-neon); font-weight: bold; margin-bottom: 10px; font-size: 0.85rem; text-align: left; border-left: 3px solid var(--rosa-neon); padding-left: 8px; }
         
         button { 
-            width: 100%; padding: 15px; background: transparent; border: 1px solid var(--rosa-neon); color: var(--rosa-neon); 
-            font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.3s; letter-spacing: 3px; 
+            width: 100%; padding: 12px; background: transparent; border: 1px solid var(--rosa-neon); color: var(--rosa-neon); 
+            font-weight: bold; text-transform: uppercase; cursor: pointer; letter-spacing: 2px; font-size: 0.8rem;
         }
-        button:hover { background: var(--rosa-neon); color: black; box-shadow: 0 0 20px var(--rosa-neon); }
 
-        /* ERROR ESCANDALOSO */
+        /* AJUSTE PANTALLA DE ERROR PARA MÓVIL */
         #pantalla-error { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: #000; color: var(--rojo); z-index: 10000; flex-direction: column; 
-            align-items: center; justify-content: center; text-align: center; padding: 30px; 
+            align-items: center; justify-content: center; text-align: center; padding: 20px; 
+            box-sizing: border-box;
         }
-        .vibrar { animation: vibracion 0.1s infinite; }
+        
+        #pantalla-error h1 { 
+            font-size: 1.5rem; /* Tamaño reducido para que no se corte */
+            color: var(--rojo); 
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        #pantalla-error p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            max-width: 90%;
+            margin-bottom: 20px;
+        }
+
+        .vibrar { animation: vibracion 0.15s infinite; }
         @keyframes vibracion {
-            0% { background: #500; transform: translate(5px, 5px); }
-            50% { background: #000; transform: translate(-5px, -5px); }
+            0% { transform: translate(2px, 2px); background: #300; }
+            50% { transform: translate(-2px, -2px); background: #000; }
             100% { transform: translate(0); }
         }
 
-        /* ÉXITO */
         #pantalla-exito { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: #000; z-index: 9999; flex-direction: column; align-items: center; justify-content: center; 
         }
-        .texto-exito { color: var(--verde); font-family: 'Syncopate', sans-serif; font-size: 1.2rem; text-align: center; line-height: 2; }
-
-        .resultado-vip { margin-top: 30px; padding: 25px; border: 1px dashed var(--oro); background: rgba(255, 215, 0, 0.05); color: #ddd; font-style: italic; }
+        
+        .resultado-vip { margin-top: 20px; padding: 15px; border: 1px dashed var(--oro); font-size: 0.9rem; background: rgba(255, 215, 0, 0.05); }
         
         .boton-opcion { 
-            background: #0a0a0a; border: 1px solid #333; color: #aaa; padding: 15px; margin-bottom: 12px; 
-            width: 100%; text-align: left; cursor: pointer; font-size: 0.85rem; transition: 0.2s; 
+            background: #0a0a0a; border: 1px solid #333; color: #aaa; padding: 12px; margin-bottom: 10px; 
+            width: 100%; text-align: left; cursor: pointer; font-size: 0.75rem; 
         }
-        .boton-opcion:hover { border-color: var(--cian-neon); color: white; background: #111; }
     </style>
 </head>
 <body>
@@ -105,146 +111,100 @@
 <div class="contenedor" id="mainContainer">
     <div id="paso1" class="paso activo">
         <h1>SISTEMA ENCRIPTADO</h1>
-        <input type="text" id="nombreUsuario" placeholder="IDENTIFICACIÓN...">
-        <p class="instruccion">Detección de intrusos activa. Ingrese nombre autorizado.</p>
+        <input type="text" id="nombreUsuario" placeholder="TU NOMBRE...">
+        <p class="instruccion">Solo personal autorizado.</p>
         <button onclick="siguientePaso()">CARGAR PERFIL</button>
     </div>
 
     <div id="paso2" class="paso">
-        <h1 id="tituloQuiz">PROTOCOLO DE VERIFICACIÓN</h1>
-        <p class="instruccion" id="introQuiz"></p>
+        <h1 id="tituloQuiz">VERIFICACIÓN</h1>
         <div id="contenedorPreguntas"></div>
-        <button id="btnVerificar" onclick="validarQuiz()">DESBLOQUEAR DATOS</button>
+        <button id="btnVerificar" onclick="validarQuiz()">DESBLOQUEAR</button>
     </div>
 
     <div id="paso3" class="paso">
         <div class="resultado-vip">
             <p id="mensajeFinal"></p>
         </div>
-        <p style="margin-top: 25px; font-size: 0.8rem; color: #888;">Nicolle está esperando tu reporte en la base de datos de WhatsApp:</p>
-        <button onclick="window.open('https://wa.me/51931517135', '_blank')" style="border-color: #25d366; color: #25d366;">NOTIFICAR A CREADORA 📱</button>
+        <button onclick="window.open('https://wa.me/51931517135', '_blank')" style="border-color: #25d366; color: #25d366; margin-top: 20px;">HABLAR CON NICOLLE 📱</button>
     </div>
 </div>
 
 <div id="pantalla-error" class="vibrar">
-    <h1 style="font-size: 3rem;">🚫 ACCESO DENEGADO 🚫</h1>
-    <p style="font-size: 1.5rem; max-width: 800px;">ESTA INFORMACIÓN ES CONFIDENCIAL. <br> NO ESTÁS EN LA LISTA VIP. <br> ABORTANDO SISTEMA... AMENAZA DETECTADA.</p>
-    <button onclick="location.reload()" style="border-color: white; color: white; width: auto; padding: 10px 40px; margin-top: 20px;">REINTENTAR ACCESO</button>
+    <h1>🚫 ACCESO DENEGADO</h1>
+    <p>USUARIO NO RECONOCIDO.<br>No estás en la lista VIP de Nicolle.<br>Saliendo del sistema...</p>
+    <button onclick="location.reload()" style="border-color: white; color: white; width: auto; padding: 10px 30px;">REINTENTAR</button>
 </div>
 
 <div id="pantalla-exito">
-    <div class="texto-exito">✨ IDENTIDAD CONFIRMADA ✨<br>BIENVENIDA AL CÍRCULO INTERNO</div>
-    <p style="color: #666; margin-top: 20px;">Accediendo a la memoria de Nicolle...</p>
+    <div style="color: var(--verde); font-family: 'Syncopate'; font-size: 1rem; text-align: center;">✨ CONFIRMADA ✨</div>
 </div>
 
 <script>
     let nombreActual = "";
-
-    // Función mágica para quitar acentos y dejar todo en minúsculas
-    function normalizar(texto) {
-        return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-    }
+    function normalizar(t) { return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim(); }
 
     function siguientePaso() {
-        const entradaRaw = document.getElementById('nombreUsuario').value;
-        const entrada = normalizar(entradaRaw);
-        
-        // Lista de nombres normalizados (sin acentos, sin mayúsculas)
-        const validos = ["raymar", "barbara", "ariagni", "keirimar"];
-
-        if (validos.includes(entrada)) {
-            nombreActual = entrada;
-            document.getElementById('paso1').classList.remove('activo');
-            document.getElementById('paso2').classList.add('activo');
-            prepararTest();
-        } else {
-            document.getElementById('pantalla-error').style.display = "flex";
+        const e = normalizar(document.getElementById('nombreUsuario').value);
+        const v = ["raymar", "barbara", "ariagny", "keirimar"];
+        if (v.includes(e)) { 
+            nombreActual = e; 
+            document.getElementById('paso1').classList.remove('activo'); 
+            document.getElementById('paso2').classList.add('activo'); 
+            prepararTest(); 
+        } else { 
+            document.getElementById('pantalla-error').style.display = "flex"; 
         }
     }
 
     function prepararTest() {
-        const contenedor = document.getElementById('contenedorPreguntas');
-        document.getElementById('tituloQuiz').innerText = `DESAFÍO: ${nombreActual.toUpperCase()}`;
-        document.getElementById('introQuiz').innerText = `Solo ${nombreActual} conoce esta información de Nicolle:`;
-        contenedor.innerHTML = "";
-
+        const c = document.getElementById('contenedorPreguntas');
         if (nombreActual === "barbara") {
-            contenedor.innerHTML = `
-                <p class="pregunta-personal">1. ¿Quién de construcción le parecía atractivo a mi creadora?</p>
-                <input type="text" id="ans1" placeholder="Nombre...">
-                <p class="pregunta-personal">2. ¿Con qué parte de ti te hace más bullying mi creadora? (Cantar de los Cantares).</p>
-                <input type="text" id="ans2" placeholder="Respuesta...">`;
+            c.innerHTML = `<p class="pregunta-personal">1. ¿Quién de construcción le atrae a Nicolle?</p><input type="text" id="ans1"><p class="pregunta-personal">2. ¿Por qué parte de ti te hace bullying?</p><input type="text" id="ans2">`;
         } else if (nombreActual === "raymar") {
-            contenedor.innerHTML = `
-                <p class="pregunta-personal">1. ¿De dónde es la última persona que le gustó a mi creadora?</p>
-                <input type="text" id="ans1" placeholder="Lugar...">`;
-        } else if (nombreActual === "ariagni") {
-            contenedor.innerHTML = `
-                <p class="pregunta-personal">1. ¿De qué tema hablaron tú y Nicolle anoche sobre "Tu sagrada vida"?</p>
-                <input type="text" id="ans1" placeholder="...">
-                <p class="pregunta-personal">2. ¿Qué tipo de libros le gustan a mi creadora?</p>
-                <input type="text" id="ans2" placeholder="...">`;
+            c.innerHTML = `<p class="pregunta-personal">1. ¿De dónde es el último que le gustó?</p><input type="text" id="ans1">`;
+        } else if (nombreActual === "ariagny") {
+            c.innerHTML = `<p class="pregunta-personal">1. ¿Tema de "tu sagrada vida" de anoche?</p><input type="text" id="ans1"><p class="pregunta-personal">2. ¿Libros favoritos de Nicolle?</p><input type="text" id="ans2">`;
         } else if (nombreActual === "keirimar") {
-            contenedor.innerHTML = `
-                <p class="pregunta-personal">Selecciona la respuesta más funable:</p>
-                <button class="boton-opcion" onclick="validarQuiz('fun')">A. Los pobres no deberían tener hijos si no tienen plata.</button>
-                <button class="boton-opcion" onclick="validarQuiz('fun')">B. Si no te llaman no te metas. Viejos metiches.</button>
-                <button class="boton-opcion" onclick="validarQuiz('fun')">C. Los temas de género son enfermedades mentales normalizadas.</button>`;
-            document.getElementById('btnVerificar').style.display = "none";
+            c.innerHTML = `<button class="boton-opcion" onclick="validarQuiz('f')">A. Pobres sin hijos</button><button class="boton-opcion" onclick="validarQuiz('f')">B. Viejos metiches</button><button class="boton-opcion" onclick="validarQuiz('f')">C. Género/Enfermedad</button>`;
+            document.getElementById('btnVerificar').style.display="none";
         }
     }
 
-    function validarQuiz(especial) {
-        let paso = false;
-        
-        // Función para validar si la respuesta contiene al menos una palabra clave
-        const contiene = (id, lista) => {
-            const val = normalizar(document.getElementById(id).value);
-            return lista.some(palabra => val.includes(normalizar(palabra)));
+    function validarQuiz(esp) {
+        let p = false;
+        const con = (id, l) => { 
+            if(!document.getElementById(id)) return false;
+            const v = normalizar(document.getElementById(id).value); 
+            return l.some(pal => v.includes(normalizar(pal))); 
         };
+        
+        if (nombreActual === "barbara") { if(con("ans1", ["jonas"]) && con("ans2", ["negra","piel","oscura","color"])) p = true; }
+        else if (nombreActual === "raymar") { if(con("ans1", ["pie de sabana"])) p = true; }
+        else if (nombreActual === "ariagny") { if(con("ans1", ["bailar","saco","sacó"]) && con("ans2", ["dark","romance"])) p = true; }
+        else if (esp === 'f') p = true;
 
-        if (nombreActual === "barbara") {
-            const checkJonas = contiene("ans1", ["jonas"]);
-            const checkBullying = contiene("ans2", ["negra", "piel", "oscura", "tono", "color"]);
-            if (checkJonas && checkBullying) paso = true;
-        } 
-        else if (nombreActual === "raymar") {
-            if (contiene("ans1", ["pie de sabana", "sabana"])) paso = true;
-        } 
-        else if (nombreActual === "ariagni") {
-            const checkBailar = contiene("ans1", ["bailar", "saco", "sacó"]);
-            const checkLibros = contiene("ans2", ["dark", "romance", "libros"]);
-            if (checkBailar && checkLibros) paso = true;
-        } 
-        else if (especial === 'fun') {
-            paso = true;
-        }
-
-        if (paso) {
-            const exito = document.getElementById('pantalla-exito');
-            exito.style.display = "flex";
-            document.getElementById('paso2').classList.remove('activo');
-            setTimeout(() => {
-                exito.style.display = "none";
-                mostrarSecreto();
-            }, 3000);
-        } else {
-            document.getElementById('pantalla-error').style.display = "flex";
+        if (p) { 
+            document.getElementById('pantalla-exito').style.display = "flex"; 
+            setTimeout(() => { 
+                document.getElementById('pantalla-exito').style.display = "none"; 
+                document.getElementById('paso2').classList.remove('activo'); 
+                document.getElementById('paso3').classList.add('activo'); 
+                mostrarS(); 
+            }, 2000); 
+        } else { 
+            document.getElementById('pantalla-error').style.display = "flex"; 
         }
     }
 
-    function mostrarSecreto() {
-        document.getElementById('paso3').classList.add('activo');
-        const finalMsg = document.getElementById('mensajeFinal');
-
-        const mensajes = {
-            "raymar": "Nicolle necesita noche de karaoke... Y según ella: dale más chismesitos, son vida para su vida.",
-            "barbara": "Según mi creadora, necesita que le informes del fulano (tú sabes). La tienes desinformada y a ella no le gusta estar así. Así que ponte al día, Barbaridad.",
-            "ariagni": "Mi creadora cree que la relación de ustedes ha progresado... Pero no le cuentes que te dije que... Ella jamás aceptará que la llames cuñada 😜... Así que por salud no lo hagas... Aunque si te cuento hazlo jejeje, ella me creó pero le gusta ponerla a prueba.",
-            "keirimar": "Según mi creadora, ama lo funable que eres y ella siente que digas lo que digas ella puede salir con algo más funable y no será juzgada... Espacio confiable como le dicen ustedes los jóvenes."
+    function mostrarS() {
+        const m = { 
+            "raymar": "Nicolle dice que necesita noche de karaoke... Y según ella: dale más chismesitos, son vida para su vida.", 
+            "barbara": "Según mi creadora, urge que le informes del fulano. La tienes desinformada y ella odia eso. ¡Ponte al día, Barbaridad!", 
+            "ariagny": "¡Alerta de Cuñada! 😜 Nicolle dice que son casi familia, pero no se lo digas porque lo negará. Dice que no la llames cuñada todavía... ¡aunque puedes hacerlo para molestarla!", 
+            "keirimar": "Nicolle ama lo 'funable' que eres. Contigo puede decir cualquier barbaridad y sabe que no la juzgarás." 
         };
-        
-        finalMsg.innerText = mensajes[nombreActual];
+        document.getElementById('mensajeFinal').innerText = m[nombreActual];
     }
 </script>
 </body>
