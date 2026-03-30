@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA ULTRA-VIP NICOLLE 🤫</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --rosa-neon: #ff00ff; --cian-neon: #00ffff; --oro: #ffd700; --rojo: #ff0000; --verde: #00ff66; }
+        
+        body { 
+            background: radial-gradient(circle, #0f0f0f 0%, #000 100%); 
+            color: white; 
+            font-family: 'Montserrat', sans-serif; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px; 
+            overflow: hidden;
+        }
+
+        /* Efecto de líneas de TV vieja (Misterio) */
+        body::before {
+            content: " ";
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 100;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .contenedor { 
+            width: 100%; 
+            max-width: 500px; 
+            background: rgba(10, 10, 10, 0.9); 
+            padding: 40px; 
+            border-radius: 5px; 
+            border: 1px solid #333; 
+            text-align: center; 
+            box-shadow: 0 0 30px rgba(0,0,0,1); 
+            position: relative; 
+            z-index: 1;
+        }
+        
+        h1 { font-family: 'Syncopate', sans-serif; font-size: 1rem; letter-spacing: 5px; color: var(--cian-neon); text-shadow: 0 0 10px var(--cian-neon); margin-bottom: 30px; }
+        
+        .paso { display: none; }
+        .activo { display: block; animation: glitchear 0.3s ease; }
+        
+        @keyframes glitchear {
+            0% { transform: translate(2px, 2px); }
+            50% { transform: translate(-2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        
+        input { 
+            width: 100%; padding: 15px; background: #000; border: 1px solid #444; border-radius: 0; color: var(--verde); 
+            font-family: 'Courier New', monospace; font-size: 1.1rem; text-align: center; margin-bottom: 15px; box-sizing: border-box; outline: none; 
+        }
+        input:focus { border-color: var(--rosa-neon); box-shadow: 0 0 15px var(--rosa-neon); }
+
+        .instruccion { font-size: 0.75rem; color: #666; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .pregunta-personal { color: var(--rosa-neon); font-weight: bold; margin-bottom: 15px; font-size: 0.9rem; text-align: left; border-left: 3px solid var(--rosa-neon); padding-left: 10px; }
+        
+        button { 
+            width: 100%; padding: 15px; background: transparent; border: 1px solid var(--rosa-neon); color: var(--rosa-neon); 
+            font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.3s; letter-spacing: 3px; 
+        }
+        button:hover { background: var(--rosa-neon); color: black; box-shadow: 0 0 20px var(--rosa-neon); }
+
+        /* ERROR ESCANDALOSO */
+        #pantalla-error { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #000; color: var(--rojo); z-index: 10000; flex-direction: column; 
+            align-items: center; justify-content: center; text-align: center; padding: 30px; 
+        }
+        .vibrar { animation: vibracion 0.1s infinite; }
+        @keyframes vibracion {
+            0% { background: #500; transform: translate(5px, 5px); }
+            50% { background: #000; transform: translate(-5px, -5px); }
+            100% { transform: translate(0); }
+        }
+
+        /* ÉXITO */
+        #pantalla-exito { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #000; z-index: 9999; flex-direction: column; align-items: center; justify-content: center; 
+        }
+        .texto-exito { color: var(--verde); font-family: 'Syncopate', sans-serif; font-size: 1.2rem; text-align: center; line-height: 2; }
+
+        .resultado-vip { margin-top: 30px; padding: 25px; border: 1px dashed var(--oro); background: rgba(255, 215, 0, 0.05); color: #ddd; font-style: italic; }
+        
+        .boton-opcion { 
+            background: #0a0a0a; border: 1px solid #333; color: #aaa; padding: 15px; margin-bottom: 12px; 
+            width: 100%; text-align: left; cursor: pointer; font-size: 0.85rem; transition: 0.2s; 
+        }
+        .boton-opcion:hover { border-color: var(--cian-neon); color: white; background: #111; }
+    </style>
+</head>
+<body>
+
+<div class="contenedor" id="mainContainer">
+    <div id="paso1" class="paso activo">
+        <h1>SISTEMA ENCRIPTADO</h1>
+        <input type="text" id="nombreUsuario" placeholder="IDENTIFICACIÓN...">
+        <p class="instruccion">Detección de intrusos activa. Ingrese nombre autorizado.</p>
+        <button onclick="siguientePaso()">CARGAR PERFIL</button>
+    </div>
+
+    <div id="paso2" class="paso">
+        <h1 id="tituloQuiz">PROTOCOLO DE VERIFICACIÓN</h1>
+        <p class="instruccion" id="introQuiz"></p>
+        <div id="contenedorPreguntas"></div>
+        <button id="btnVerificar" onclick="validarQuiz()">DESBLOQUEAR DATOS</button>
+    </div>
+
+    <div id="paso3" class="paso">
+        <div class="resultado-vip">
+            <p id="mensajeFinal"></p>
+        </div>
+        <p style="margin-top: 25px; font-size: 0.8rem; color: #888;">Nicolle está esperando tu reporte en la base de datos de WhatsApp:</p>
+        <button onclick="window.open('https://wa.me/51931517135', '_blank')" style="border-color: #25d366; color: #25d366;">NOTIFICAR A CREADORA 📱</button>
+    </div>
+</div>
+
+<div id="pantalla-error" class="vibrar">
+    <h1 style="font-size: 3rem;">🚫 ACCESO DENEGADO 🚫</h1>
+    <p style="font-size: 1.5rem; max-width: 800px;">ESTA INFORMACIÓN ES CONFIDENCIAL. <br> NO ESTÁS EN LA LISTA VIP. <br> ABORTANDO SISTEMA... AMENAZA DETECTADA.</p>
+    <button onclick="location.reload()" style="border-color: white; color: white; width: auto; padding: 10px 40px; margin-top: 20px;">REINTENTAR ACCESO</button>
+</div>
+
+<div id="pantalla-exito">
+    <div class="texto-exito">✨ IDENTIDAD CONFIRMADA ✨<br>BIENVENIDA AL CÍRCULO INTERNO</div>
+    <p style="color: #666; margin-top: 20px;">Accediendo a la memoria de Nicolle...</p>
+</div>
+
+<script>
+    let nombreActual = "";
+
+    // Función mágica para quitar acentos y dejar todo en minúsculas
+    function normalizar(texto) {
+        return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    }
+
+    function siguientePaso() {
+        const entradaRaw = document.getElementById('nombreUsuario').value;
+        const entrada = normalizar(entradaRaw);
+        
+        // Lista de nombres normalizados (sin acentos, sin mayúsculas)
+        const validos = ["raymar", "barbara", "ariagni", "keirimar"];
+
+        if (validos.includes(entrada)) {
+            nombreActual = entrada;
+            document.getElementById('paso1').classList.remove('activo');
+            document.getElementById('paso2').classList.add('activo');
+            prepararTest();
+        } else {
+            document.getElementById('pantalla-error').style.display = "flex";
+        }
+    }
+
+    function prepararTest() {
+        const contenedor = document.getElementById('contenedorPreguntas');
+        document.getElementById('tituloQuiz').innerText = `DESAFÍO: ${nombreActual.toUpperCase()}`;
+        document.getElementById('introQuiz').innerText = `Solo ${nombreActual} conoce esta información de Nicolle:`;
+        contenedor.innerHTML = "";
+
+        if (nombreActual === "barbara") {
+            contenedor.innerHTML = `
+                <p class="pregunta-personal">1. ¿Quién de construcción le parecía atractivo a mi creadora?</p>
+                <input type="text" id="ans1" placeholder="Nombre...">
+                <p class="pregunta-personal">2. ¿Con qué parte de ti te hace más bullying mi creadora? (Cantar de los Cantares).</p>
+                <input type="text" id="ans2" placeholder="Respuesta...">`;
+        } else if (nombreActual === "raymar") {
+            contenedor.innerHTML = `
+                <p class="pregunta-personal">1. ¿De dónde es la última persona que le gustó a mi creadora?</p>
+                <input type="text" id="ans1" placeholder="Lugar...">`;
+        } else if (nombreActual === "ariagni") {
+            contenedor.innerHTML = `
+                <p class="pregunta-personal">1. ¿De qué tema hablaron tú y Nicolle anoche sobre "Tu sagrada vida"?</p>
+                <input type="text" id="ans1" placeholder="...">
+                <p class="pregunta-personal">2. ¿Qué tipo de libros le gustan a mi creadora?</p>
+                <input type="text" id="ans2" placeholder="...">`;
+        } else if (nombreActual === "keirimar") {
+            contenedor.innerHTML = `
+                <p class="pregunta-personal">Selecciona la respuesta más funable:</p>
+                <button class="boton-opcion" onclick="validarQuiz('fun')">A. Los pobres no deberían tener hijos si no tienen plata.</button>
+                <button class="boton-opcion" onclick="validarQuiz('fun')">B. Si no te llaman no te metas. Viejos metiches.</button>
+                <button class="boton-opcion" onclick="validarQuiz('fun')">C. Los temas de género son enfermedades mentales normalizadas.</button>`;
+            document.getElementById('btnVerificar').style.display = "none";
+        }
+    }
+
+    function validarQuiz(especial) {
+        let paso = false;
+        
+        // Función para validar si la respuesta contiene al menos una palabra clave
+        const contiene = (id, lista) => {
+            const val = normalizar(document.getElementById(id).value);
+            return lista.some(palabra => val.includes(normalizar(palabra)));
+        };
+
+        if (nombreActual === "barbara") {
+            const checkJonas = contiene("ans1", ["jonas"]);
+            const checkBullying = contiene("ans2", ["negra", "piel", "oscura", "tono", "color"]);
+            if (checkJonas && checkBullying) paso = true;
+        } 
+        else if (nombreActual === "raymar") {
+            if (contiene("ans1", ["pie de sabana", "sabana"])) paso = true;
+        } 
+        else if (nombreActual === "ariagni") {
+            const checkBailar = contiene("ans1", ["bailar", "saco", "sacó"]);
+            const checkLibros = contiene("ans2", ["dark", "romance", "libros"]);
+            if (checkBailar && checkLibros) paso = true;
+        } 
+        else if (especial === 'fun') {
+            paso = true;
+        }
+
+        if (paso) {
+            const exito = document.getElementById('pantalla-exito');
+            exito.style.display = "flex";
+            document.getElementById('paso2').classList.remove('activo');
+            setTimeout(() => {
+                exito.style.display = "none";
+                mostrarSecreto();
+            }, 3000);
+        } else {
+            document.getElementById('pantalla-error').style.display = "flex";
+        }
+    }
+
+    function mostrarSecreto() {
+        document.getElementById('paso3').classList.add('activo');
+        const finalMsg = document.getElementById('mensajeFinal');
+
+        const mensajes = {
+            "raymar": "Nicolle necesita noche de karaoke... Y según ella: dale más chismesitos, son vida para su vida.",
+            "barbara": "Según mi creadora, necesita que le informes del fulano (tú sabes). La tienes desinformada y a ella no le gusta estar así. Así que ponte al día, Barbaridad.",
+            "ariagni": "Mi creadora cree que la relación de ustedes ha progresado... Pero no le cuentes que te dije que... Ella jamás aceptará que la llames cuñada 😜... Así que por salud no lo hagas... Aunque si te cuento hazlo jejeje, ella me creó pero le gusta ponerla a prueba.",
+            "keirimar": "Según mi creadora, ama lo funable que eres y ella siente que digas lo que digas ella puede salir con algo más funable y no será juzgada... Espacio confiable como le dicen ustedes los jóvenes."
+        };
+        
+        finalMsg.innerText = mensajes[nombreActual];
+    }
+</script>
+</body>
+</html>
