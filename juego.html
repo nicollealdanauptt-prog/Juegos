@@ -3,114 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA VIP - NICOLLE</title>
+    <title>SISTEMA ULTRA-VIP NICOLLE 🤫</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --rosa: #ff00ff; --cian: #00ffff; --verde: #00ff66; --rojo: #ff4444; }
-        body { background: #000; color: white; font-family: 'Montserrat', sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 15px; overflow: hidden; box-sizing: border-box; }
-        .contenedor { width: 100%; max-width: 380px; background: rgba(15, 15, 15, 0.95); padding: 30px 20px; border: 1px solid #333; text-align: center; z-index: 1; }
-        h1 { font-family: 'Syncopate', sans-serif; font-size: 0.85rem; letter-spacing: 2px; color: var(--cian); margin-bottom: 25px; }
+        :root { --rosa-neon: #ff00ff; --cian-neon: #00ffff; --oro: #ffd700; --rojo: #ff0000; --verde: #00ff66; }
+        body { background: radial-gradient(circle, #0f0f0f 0%, #000 100%); color: white; font-family: 'Montserrat', sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; overflow: hidden; }
+        body::before { content: " "; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); z-index: 100; background-size: 100% 2px, 3px 100%; pointer-events: none; }
+        .contenedor { width: 100%; max-width: 500px; background: rgba(10, 10, 10, 0.9); padding: 40px; border: 1px solid #333; text-align: center; position: relative; z-index: 1; }
+        h1 { font-family: 'Syncopate', sans-serif; font-size: 1rem; letter-spacing: 5px; color: var(--cian-neon); text-shadow: 0 0 10px var(--cian-neon); margin-bottom: 30px; }
         .paso { display: none; }
-        .activo { display: block; }
-        input { width: 100%; padding: 12px; background: #000; border: 1px solid #444; color: var(--verde); font-family: 'Courier New', monospace; font-size: 1rem; text-align: center; margin-bottom: 15px; box-sizing: border-box; outline: none; }
-        .pregunta-p { color: var(--rosa); font-weight: bold; margin-bottom: 10px; font-size: 0.85rem; text-align: left; border-left: 3px solid var(--rosa); padding-left: 10px; }
-        button { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--rosa); color: var(--rosa); font-weight: bold; text-transform: uppercase; cursor: pointer; font-size: 0.8rem; }
+        .activo { display: block; animation: glitchear 0.3s ease; }
+        @keyframes glitchear { 0% { transform: translate(2px, 2px); } 50% { transform: translate(-2px, -2px); } 100% { transform: translate(0); } }
+        input { width: 100%; padding: 15px; background: #000; border: 1px solid #444; color: var(--verde); font-family: 'Courier New', monospace; font-size: 1.1rem; text-align: center; margin-bottom: 15px; box-sizing: border-box; outline: none; }
+        .instruccion { font-size: 0.75rem; color: #666; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .pregunta-personal { color: var(--rosa-neon); font-weight: bold; margin-bottom: 15px; font-size: 0.9rem; text-align: left; border-left: 3px solid var(--rosa-neon); padding-left: 10px; }
+        button { width: 100%; padding: 15px; background: transparent; border: 1px solid var(--rosa-neon); color: var(--rosa-neon); font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.3s; letter-spacing: 3px; }
+        button:hover { background: var(--rosa-neon); color: black; box-shadow: 0 0 20px var(--rosa-neon); }
         
-        /* ERROR AJUSTADO PARA CELULAR */
-        #pantalla-error { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: var(--rojo); z-index: 10000; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; box-sizing: border-box; }
-        #pantalla-error h1 { font-size: 1.2rem; color: var(--rojo); margin-bottom: 10px; }
-        #pantalla-error p { font-size: 0.85rem; line-height: 1.4; margin-bottom: 20px; max-width: 280px; }
-        .vibrar { animation: v 0.1s infinite; }
-        @keyframes v { 0% { transform: translate(2px,2px); } 50% { transform: translate(-2px,-2px); } }
-        
-        #pantalla-exito { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; align-items: center; justify-content: center; color: var(--verde); font-family: 'Syncopate'; font-size: 0.9rem; }
-        .res-vip { margin-top: 20px; padding: 15px; border: 1px dashed #ffd700; font-size: 0.85rem; background: rgba(255,215,0,0.05); }
-        .btn-op { background: #0a0a0a; border: 1px solid #333; color: #aaa; padding: 12px; margin-bottom: 10px; width: 100%; text-align: left; font-size: 0.75rem; }
+        #pantalla-error { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: var(--rojo); z-index: 10000; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px; box-sizing: border-box; }
+        #pantalla-error h1 { font-size: 1.5rem; color: var(--rojo); margin-bottom: 20px; }
+        .vibrar { animation: vibracion 0.1s infinite; }
+        @keyframes vibracion { 0% { background: #500; transform: translate(5px, 5px); } 50% { background: #000; transform: translate(-5px, -5px); } 100% { transform: translate(0); } }
+        #pantalla-exito { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; flex-direction: column; align-items: center; justify-content: center; }
+        .texto-exito { color: var(--verde); font-family: 'Syncopate', sans-serif; font-size: 1.2rem; text-align: center; line-height: 2; }
+        .resultado-vip { margin-top: 30px; padding: 25px; border: 1px dashed var(--oro); background: rgba(255, 215, 0, 0.05); color: #ddd; font-style: italic; }
+        .boton-opcion { background: #0a0a0a; border: 1px solid #333; color: #aaa; padding: 15px; margin-bottom: 12px; width: 100%; text-align: left; cursor: pointer; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
-<div class="contenedor">
-    <div id="p1" class="paso activo">
+<div class="contenedor" id="mainContainer">
+    <div id="paso1" class="paso activo">
         <h1>SISTEMA ENCRIPTADO</h1>
-        <input type="text" id="user" placeholder="TU NOMBRE...">
-        <button onclick="next()">IDENTIFICARSE</button>
+        <input type="text" id="nombreUsuario" placeholder="IDENTIFICACIÓN...">
+        <p class="instruccion">Detección de intrusos activa.</p>
+        <button onclick="siguientePaso()">CARGAR PERFIL</button>
     </div>
-    <div id="p2" class="paso">
-        <h1>VERIFICACIÓN</h1>
-        <div id="preguntas"></div>
-        <button id="btnV" onclick="validar()">DESBLOQUEAR</button>
+
+    <div id="paso2" class="paso">
+        <h1 id="tituloQuiz">PROTOCOLO DE VERIFICACIÓN</h1>
+        <div id="contenedorPreguntas"></div>
+        <button id="btnVerificar" onclick="validarQuiz()">DESBLOQUEAR DATOS</button>
     </div>
-    <div id="p3" class="paso">
-        <div class="res-vip"><p id="mFinal"></p></div>
-        <button onclick="window.open('https://wa.me/51931517135','_blank')" style="border-color:#25d366;color:#25d366;margin-top:15px;">AVISAR A NICOLLE</button>
+
+    <div id="paso3" class="paso">
+        <div class="resultado-vip">
+            <p id="mensajeFinal" style="line-height: 1.6; font-size: 1.1rem;"></p>
+        </div>
+        <button onclick="window.open('https://wa.me/51931517135', '_blank')" style="border-color: #25d366; color: #25d366; margin-top: 20px;">REPORTAR A NICOLLE 📱</button>
     </div>
 </div>
 
 <div id="pantalla-error" class="vibrar">
-    <h1>🚫 ACCESO DENEGADO</h1>
-    <p>USUARIO NO RECONOCIDO.<br>Abortando sistema... No estás en la lista de Nicolle.</p>
-    <button onclick="location.reload()" style="border-color:white;color:white;width:auto;padding:8px 25px;">REINTENTAR</button>
+    <h1>🚫 ACCESO DENEGADO 🚫</h1>
+    <p>ERROR CRÍTICO: No estás en la lista VIP.<br>Saliendo del sistema...</p>
+    <button onclick="location.reload()" style="border-color: white; color: white; width: auto; padding: 10px 40px; margin-top: 20px;">REINTENTAR</button>
 </div>
 
-<div id="pantalla-exito">✨ CONFIRMADA ✨</div>
+<div id="pantalla-exito">
+    <div class="texto-exito">✨ IDENTIDAD CONFIRMADA ✨</div>
+</div>
 
 <script>
-    let nActual = "";
-    function norm(t) { return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim(); }
+    let nombreActual = "";
+    function normalizar(t) { return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim(); }
 
-    function next() {
-        const e = norm(document.getElementById('user').value);
-        const v = ["raymar", "barbara", "ariagny", "keirimar"]; // <--- ARIAGNY CON Y
-        if (v.includes(e)) { 
-            nActual = e; 
-            document.getElementById('p1').classList.remove('activo'); 
-            document.getElementById('p2').classList.add('activo'); 
-            render(); 
+    function siguientePaso() {
+        const e = normalizar(document.getElementById('nombreUsuario').value);
+        const v = ["raymar", "barbara", "ariagny", "keirimar"]; // Ariagny corregido con Y
+        if (v.includes(e)) {
+            nombreActual = e;
+            document.getElementById('paso1').classList.remove('activo');
+            document.getElementById('paso2').classList.add('activo');
+            prepararTest();
         } else { document.getElementById('pantalla-error').style.display = "flex"; }
     }
 
-    function render() {
-        const c = document.getElementById('preguntas');
-        if (nActual === "barbara") {
-            c.innerHTML = `<p class="pregunta-p">1. ¿Quién de construcción le atrae a Nicolle?</p><input id="a1"><p class="pregunta-p">2. ¿Bullying por qué parte de ti?</p><input id="a2">`;
-        } else if (nActual === "raymar") {
-            c.innerHTML = `<p class="pregunta-p">1. ¿De dónde es el último que le gustó?</p><input id="a1">`;
-        } else if (nActual === "ariagny") { // <--- ARIAGNY CON Y
-            c.innerHTML = `<p class="pregunta-p">1. ¿Tema de "tu sagrada vida" de anoche?</p><input id="a1"><p class="pregunta-p">2. ¿Género de libros que odias/ella ama?</p><input id="a2">`;
-        } else if (nActual === "keirimar") {
-            c.innerHTML = `<button class="btn-op" onclick="validar('f')">A. Pobres sin hijos</button><button class="btn-op" onclick="validar('f')">B. Viejos metiches</button><button class="btn-op" onclick="validar('f')">C. Género/Enfermedad</button>`;
-            document.getElementById('btnV').style.display="none";
+    function prepararTest() {
+        const c = document.getElementById('contenedorPreguntas');
+        if (nombreActual === "barbara") {
+            c.innerHTML = `<p class="pregunta-personal">1. ¿Quién de construcción le parece atractivo a Nicolle?</p><input type="text" id="ans1"><p class="pregunta-personal">2. ¿Por qué parte de ti te hace bullying?</p><input type="text" id="ans2">`;
+        } else if (nombreActual === "raymar") {
+            c.innerHTML = `<p class="pregunta-personal">1. ¿De dónde es el último que le gustó?</p><input type="text" id="ans1">`;
+        } else if (nombreActual === "ariagny") {
+            c.innerHTML = `<p class="pregunta-personal">1. ¿Tema de "tu sagrada vida" de anoche?</p><input type="text" id="ans1"><p class="pregunta-personal">2. ¿Género de libros que ella ama?</p><input type="text" id="ans2">`;
+        } else if (nombreActual === "keirimar") {
+            c.innerHTML = `<button class="boton-opcion" onclick="validarQuiz('f')">A. Pobres sin hijos</button><button class="boton-opcion" onclick="validarQuiz('f')">B. Viejos metiches</button><button class="boton-opcion" onclick="validarQuiz('f')">C. Género/Enfermedad</button>`;
+            document.getElementById('btnVerificar').style.display="none";
         }
     }
 
-    function validar(esp) {
-        let ok = false;
-        const check = (id, list) => { 
+    function validarQuiz(esp) {
+        let p = false;
+        const con = (id, l) => { 
             if(!document.getElementById(id)) return false;
-            const v = norm(document.getElementById(id).value); 
-            return list.some(p => v.includes(norm(p))); 
+            const v = normalizar(document.getElementById(id).value); 
+            return l.some(pal => v.includes(normalizar(pal))); 
         };
         
-        if (nActual === "barbara") { if(check("a1",["jonas"]) && check("a2",["negra","piel","oscura"])) ok = true; }
-        else if (nActual === "raymar") { if(check("a1",["pie de sabana"])) ok = true; }
-        else if (nActual === "ariagny") { if(check("a1",["bailar","saco","sacó"]) && check("a2",["dark","romance"])) ok = true; }
-        else if (esp === 'f') ok = true;
+        if (nombreActual === "barbara") { if(con("ans1", ["jonas"]) && con("ans2", ["negra","piel","oscura"])) p = true; }
+        else if (nombreActual === "raymar") { if(con("ans1", ["pie de sabana"])) p = true; }
+        else if (nombreActual === "ariagny") { if(con("ans1", ["bailar","saco","sacó"]) && con("ans2", ["dark","romance"])) p = true; }
+        else if (esp === 'f') p = true;
 
-        if (ok) { 
-            document.getElementById('pantalla-exito').style.display = "flex"; 
-            setTimeout(() => { 
-                document.getElementById('pantalla-exito').style.display = "none"; 
-                document.getElementById('p2').classList.remove('activo'); 
-                document.getElementById('p3').classList.add('activo'); 
-                const msjs = {
-                    "raymar": "Nicolle quiere karaoke y que sueltes el chisme, que es su motor.",
-                    "barbara": "Informa sobre el fulano. Nicolle odia estar desinformada. ¡Ponte al día!",
-                    "ariagny": "¡Hola Cuñada! Nicolle dice que son familia, pero lo negará. ¡Llámala así para molestarla!",
-                    "keirimar": "Nicolle ama lo funable que eres. Eres su lugar seguro para el caos."
+        if (p) {
+            document.getElementById('pantalla-exito').style.display = "flex";
+            setTimeout(() => {
+                document.getElementById('pantalla-exito').style.display = "none";
+                document.getElementById('paso2').classList.remove('activo');
+                document.getElementById('paso3').classList.add('activo');
+                const m = {
+                    "raymar": "Nicolle dice que necesita karaoke y chismes nuevos ya.",
+                    "barbara": "Ponte al día con el fulano, Nicolle está desinformada.",
+                    "ariagny": "ADVERTENCIA DEL SISTEMA: Nicolle te quiere mucho, PERO dice que no lograrás nada con su hermano. ⛔ Acceso denegado a la familia. Jamás lograrás entrar en el árbol genealógico, así que ríndete. 😜",
+                    "keirimar": "Eres su lugar seguro para ser funable."
                 };
-                document.getElementById('mFinal').innerText = msjs[nActual];
-            }, 2000); 
+                document.getElementById('mensajeFinal').innerText = m[nombreActual];
+            }, 2000);
         } else { document.getElementById('pantalla-error').style.display = "flex"; }
     }
 </script>
